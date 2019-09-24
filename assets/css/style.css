@@ -1,0 +1,38 @@
+body {
+    background-image: url(https://img5.goodfon.com/original/1920x1080/0/db/uri-benny-by-uri-benny-back-to-the-80-s-retro-synth-retrowav.jpg)
+}
+
+#triviaContainer {
+    background-color:pink;
+    border-style: groove;
+    border-width: medium;
+    border-color: whitesmoke;
+}
+
+#triviaText {
+    color: black;
+    font-style: italic;
+    font-family: 'Big Shoulders Display', cursive;
+    font-size: 22pt
+}
+
+#gameHeader {
+    background-color: aqua;
+    border-style: groove;
+    border-width: medium;
+    border-color: whitesmoke;
+    font-family: 'Merriweather', serif;
+    font-size: 40pt;
+    height: 250px;
+    font-weight: bold
+}
+
+.choice {
+    border-style: groove;
+    border-width: medium;
+    border-color: whitesmoke;
+    color: red;
+    font-style: italic;
+    font-family: 'Big Shoulders Display', cursive;
+    font-size: 18pt
+}

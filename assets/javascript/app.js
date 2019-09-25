@@ -122,6 +122,7 @@ $(document).on("click", ".choice", function () {
 
 //Created a function to display result of chosen answers
 function triviaResult() {
+    clearInterval(timer)
     const result = `<p> You got ${score} correct out of a possible ${triviaQuestions.length}</p>`
     $(".triviaText").html(result)
 

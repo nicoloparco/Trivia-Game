@@ -21,6 +21,16 @@ const triviaQuestions = [
         question: "The featured car in this movie featuring time travel and a whacky scientist is which one of the following?",
         choices: ["DeLorean", "Firebird", "Camaro", "Countach"],
         answer: "DeLorean"
+    },
+    {
+        question: "Which one of the following was NOT an 80's fashion trend?",
+        choices: ["Big Hair", "Spandex", "Flannels", "Mullets"],
+        answer: "Flannels"
+    },
+    {
+        question: "Back in the 80's which device allowed people to listen to listen to tapes anywhere at anytime?",
+        choices: ["Laserdisk", "Walkman", "VCR", "Portable phone"],
+        answer: "Walkman"
     }
 ]
 

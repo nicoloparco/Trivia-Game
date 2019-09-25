@@ -24,6 +24,11 @@ const triviaQuestions = [
     }
 ]
 
+const triviaGIFS = [
+    "../assets/images/trivia-game-gif-1.webp" , "../assets/images/trivia-game-gif-2.webp", "../assets/images/trivia-game-gif-3.webp", "../assets/images/trivia-game-gif-4.webp",
+    "../assets/images/trivia-game-gif-5.webp" , "../assets/images/trivia-game-gif-6.webp"
+]
+
 //Starting variables
 let counter = 30;
 let currentQuestion = 0;
@@ -37,17 +42,20 @@ function countDown() {
 //Once timer reaches 0 it will stop and move onto the next question
     if (counter === 0){
         clearInterval(timer)
-        nextQuestion();
+        displayGIF();
+        setTimeout(nextQuestion(), 3 * 1000);
     }
 }
 
 //Function that determines whether to move onto the next question or stop if there are none left
 function nextQuestion(){
+    console.log('Next Question fired..')
     if((triviaQuestions.length -1) === currentQuestion){
         triviaResult()
     } 
     else {
         currentQuestion++;
+        $("#currentQuestion").empty();
         displayQuestion()
     }
 }
@@ -59,11 +67,11 @@ function displayQuestion () {
  //Set both the question and choices as variables   
     const question = triviaQuestions[currentQuestion].question;
     const choices = triviaQuestions[currentQuestion].choices;
- //Add the question and its answers into the html   
-    $("#currentQuestion").html(`<h4>${question}</h4>${displayChoices(choices)}`);
-    $("#timer").html(`<h4>Timer: ${counter}</h4>`);
-    $("remainingQuestions").html(`<p>Remaining Questions: ${triviaQuestions.length - currentQuestion[question]}`)
-    
+ //Add the question and its answers into the html as well as remaining questions 
+    $(".triviaText").html(`
+    <h4>${question}</h4>${displayChoices(choices)}
+    <h4>${remainingQuestions()}</h4>`)
+    $("#timer").html(`<h4>Timer: ${counter}`)
 }
 
 //Created a function that will display the possible choices of answers for a given question
@@ -75,6 +83,13 @@ function displayChoices(choices) {
     return result;
 }
 
+//Created function to display remaining questions
+function remainingQuestions () {
+    const questionsLeft = triviaQuestions.length - (currentQuestion + 1);
+    const totalQuestions = triviaQuestions.length;
+    return `Remaining Questions: ${questionsLeft}/${totalQuestions}`
+}
+
 
 //Created a function that uses on click event to compare chosen answer
 $(document).on("click", ".choice", function () {
@@ -84,19 +99,48 @@ $(document).on("click", ".choice", function () {
  //If chosen answer is correct, score will increase by 1 
     if (chosenAnswer === correctAnswer){
         score++;
-        nextQuestion()  
+        displayGIF("win",correctAnswer);
+        setTimeout(nextQuestion, 3 * 1000)
+        
     }
     else {
-        nextQuestion()
+        displayGIF("lose",correctAnswer);
+        setTimeout(nextQuestion, 3 * 1000)
     }
     
 });
 
-//Created a function to display chosen answers and the result of the choices
+//Created a function to display result of chosen answers
 function triviaResult() {
     const result = `<p> You got ${score} correct out of a possible ${triviaQuestions.length}</p>`
-    $("#triviaText").html(result)
+    $(".triviaText").html(result)
 
+}
+
+//Created a function to select a random gif from an array
+function randomImage() {
+    let randomNumber = Math.floor(Math.random() * triviaGIFS.length);
+    let randomImage = triviaGIFS[randomNumber];
+    return randomImage
+}
+
+//Created a function to display a GIF after answering a question
+function displayGIF(status,correctAnswer) {
+    
+    if(status === "win") {
+        $(".triviaText").html(`
+        <p>Congrats you chose correctly!</p>
+        <p>The correct answer was ${correctAnswer}</p>
+        <img src="${randomImage()}"/>
+        `)
+    }
+    else if (status === "lose") {
+        $(".triviaText").html(`
+        <p>The answer you chose was incorrect!</p>
+        <p>The correct answer was ${correctAnswer}</p>
+        <img src="${randomImage()}"/>
+        `)
+    }
 }
 
 //Created a reset button

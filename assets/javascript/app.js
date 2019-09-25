@@ -35,8 +35,8 @@ const triviaQuestions = [
 ]
 
 const triviaGIFS = [
-    "../assets/images/trivia-game-gif-1.webp" , "../assets/images/trivia-game-gif-2.webp", "../assets/images/trivia-game-gif-3.webp", "../assets/images/trivia-game-gif-4.webp",
-    "../assets/images/trivia-game-gif-5.webp" , "../assets/images/trivia-game-gif-6.webp"
+    "assets/images/trivia-game-gif-1.webp" , "assets/images/trivia-game-gif-2.webp", "assets/images/trivia-game-gif-3.webp", "assets/images/trivia-game-gif-4.webp",
+    "assets/images/trivia-game-gif-5.webp" , "assets/images/trivia-game-gif-6.webp"
 ]
 
 //Starting variables
